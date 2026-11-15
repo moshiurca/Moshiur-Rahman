@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #131416;
+    --bg-secondary: #1a1c20;
+    --bg-card: rgba(26, 28, 32, 0.78);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-glass-bright: rgba(242, 101, 34, 0.38);
+    --accent-crimson: #800606;
+    --accent-crimson-bright: #a80909;
+    --accent-orange: #f26522;
+    --accent-orange-glow: rgba(242, 101, 34, 0.35);
+    --font-display: 'Anton', sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    font-family: var(--font-body);
+    background-color: var(--bg-primary);
+    color: #ffffff;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: #ffffff;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-mono-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-crimson);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-orange);
+}
+
+/* Blueprint CAD Grid Overlay */
+.bg-grid-overlay {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Animated Shimmer Text */
+.animated-gradient-text {
+  background: linear-gradient(120deg, #ffffff 0%, #ff8a4c 35%, #f26522 55%, #ffffff 85%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerText 5s linear infinite;
+}
+
+@keyframes shimmerText {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Rotating Mechanical Target Ring */
+@keyframes spinCursor {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.cursor-ring-spin {
+  animation: spinCursor 12s linear infinite;
+}
+
+/* Glass Surface */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.48);
+  transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--border-glass-bright);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animated-gradient-text,
+  .cursor-ring-spin {
+    animation: none;
+  }
+}
